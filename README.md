@@ -6,3 +6,4 @@ url-files-to-markdown
 ```
 ### TODOs
 - [ ] file urls (e.g. "application/pdf")
+- [ ] NCommands, SizeCommands

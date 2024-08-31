@@ -24,7 +24,7 @@ import (
 // 		nil, // LC_LOAD_DYLINKER
 // 		nil, // LC_UUID
 // 		nil, // LC_UNIXTHREAD
-// 		&LoadDylib{Dylib{LoadBytes: LoadBytes(nil), DylibCmd: types.DylibCmd{LoadCmd: 0xc, Len: 0x38, NameOffset: 0x18, Timestamp: 0x2, CurrentVersion: types.Version(0x10000), CompatVersion: types.Version(0x10000)}, Name: "/usr/lib/libgcc_s.1.dylib"}},
+// 		----------- &LoadDylib{Dylib{LoadBytes: LoadBytes(nil), DylibCmd: types.DylibCmd{LoadCmd: 0xc, Len: 0x38, NameOffset: 0x18, Timestamp: 0x2, CurrentVersion: types.Version(0x10000), CompatVersion: types.Version(0x10000)}, Name: "/usr/lib/libgcc_s.1.dylib"}},
 // 		&LoadDylib{Dylib{LoadBytes: LoadBytes(nil), DylibCmd: types.DylibCmd{LoadCmd: 0xc, Len: 0x38, NameOffset: 0x18, Timestamp: 0x2, CurrentVersion: types.Version(0x6f0104), CompatVersion: types.Version(0x10000)}, Name: "/usr/lib/libSystem.B.dylib"}},
 // 	},
 // 	loads       []any
@@ -63,11 +63,18 @@ func main() {
 	// AddSegment contains AddLoad
 	machoFile.AddSegment(&m.Segment{})
 
-	// Section depends on Segment
-	machoFile.AddSection(&types.Section{Relocs: []types.Reloc{}})
+	// // Section depends on Segment
+	// machoFile.AddSection(&types.Section{Relocs: []types.Reloc{}})
 
 	machoFile.Save("macho")
 
+	//fmt.Println(machoFile)
+
+
+	//
+}
+
+func A(machoFile *m.File) {
 	data, _ := base64.StdEncoding.DecodeString(Data)
 	r := bytes.NewReader(data)
 	f, _ := m.NewFile(r)
